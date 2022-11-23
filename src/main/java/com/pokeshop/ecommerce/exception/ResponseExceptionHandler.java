@@ -36,7 +36,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(java.lang.Exception.class)
     public final ResponseEntity<Object> manejarTodasExcepciones(java.lang.Exception ex, WebRequest request) {
         if (ex instanceof GenericException suex) {
-            return new ResponseEntity<>(ApiResponse.error(ex.getMessage(), suex.getCodigo(), suex.getType()), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(ApiResponse.error(ex.getMessage(), suex.getCodigo(), suex.getType()), HttpStatus.BAD_REQUEST);
         } else {
             ex.printStackTrace();
             return new ResponseEntity<>(ApiResponse.error(ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
